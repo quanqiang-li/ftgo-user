@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,9 @@ public class UserContrller {
 	public String validUser(@PathVariable("userId") String userId, HttpServletRequest req) {
 		// 得到客户端ip，并记录log
 		String ipAddr = WebUtil.getIpAddr(req);
-		logger.info("这里是{},接收到来自{}的请求,参数userId={}", host, ipAddr, userId);
-		return "success";
+		String info = String.format("这里是%s,接收到来自%s的请求,参数userId=%s", host, ipAddr, userId);
+		logger.info(info);
+		return info;
 	}
+
 }
